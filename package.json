@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "hardhat": "^2.22.18"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
