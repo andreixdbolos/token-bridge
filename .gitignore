@@ -1,4 +1,9 @@
 node_modules/** 
 
-token/.env
 token/node_modules/**
+token/frontend/node_modules/**
+token/backend/node_modules/**
+token/frontend/build/**
+token/backend/build/**
+token/frontend/.env
+token/backend/.env
