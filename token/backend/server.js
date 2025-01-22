@@ -15,17 +15,17 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const ETH_RPC_URL = 'http://127.0.0.1:8545';
-const ETH_PRIVATE_KEY = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80';
-const ETH_CONTRACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+const ETH_PRIVATE_KEY = process.env.ETH_PRIVATE_KEY;
+const ETH_CONTRACT_ADDRESS = process.env.ETH_CONTRACT_ADDRESS;
 
-const NETWORK = 'localnet';
-const SUI_RPC_URL = getFullnodeUrl(NETWORK);
-const SUI_PRIVATE_KEY_HEX = 'd359be4cd668af6049e62149b0b1a79fd3dbb7cd8dc16171c7a625e3e78e4dee';
-const SUI_CONTRACT_PACKAGE_ID = '0x9396313a91b60a4442228aa73e4e3b352c019c1ccd054e0f8e3dccceff631685';
-const SUI_MODULE_NAME = 'token';
+const NETWORK = process.env.NETWORK;
+const SUI_RPC_URL = process.env.SUI_RPC_URL;
+const SUI_PRIVATE_KEY_HEX = process.env.SUI_PRIVATE_KEY_HEX;
+const SUI_CONTRACT_PACKAGE_ID = process.env.SUI_CONTRACT_PACKAGE_ID;
+const SUI_MODULE_NAME = process.env.SUI_MODULE_NAME;
 
-const SUI_TREASURY_CAP_ID = '0x0e137aed417c7489af1ca0c7b53d9601e1c73cfcde6d43c080c35739d247217f';
-const SUI_MINTER_CAP_ID = '0x27d87bef734a3442d4d2746d952e3384bd05f966297824f4515bee0f9d9548db';
+const SUI_TREASURY_CAP_ID = process.env.SUI_TREASURY_CAP_ID;
+const SUI_MINTER_CAP_ID = process.env.SUI_MINTER_CAP_ID;
 
 const ETH_DECIMALS = 18;
 const SUI_DECIMALS = 9;
