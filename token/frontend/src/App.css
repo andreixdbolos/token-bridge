@@ -1,0 +1,22 @@
+.app {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 48px 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.5px;
+} 

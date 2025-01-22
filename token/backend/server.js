@@ -38,12 +38,10 @@ const ethContractABI = [
 ];
 const ethContract = new ethers.Contract(ETH_CONTRACT_ADDRESS, ethContractABI, ethWallet);
 
-// Initialize Sui client
 const transport = new SuiHTTPTransport({ url: SUI_RPC_URL });
 const suiClient = new SuiClient({ transport });
 const suiKeypair = Ed25519Keypair.fromSecretKey(Buffer.from(SUI_PRIVATE_KEY_HEX, 'hex'));
 
-// Helper function to convert between decimal precisions
 const convertDecimals = (amount, fromDecimals, toDecimals) => {
   const difference = fromDecimals - toDecimals;
   if (difference > 0) {
@@ -53,12 +51,10 @@ const convertDecimals = (amount, fromDecimals, toDecimals) => {
   }
 };
 
-// Helper function to parse Ethereum amount
 const parseAmount = (amount) => {
   return ethers.parseUnits(amount.toString(), ETH_DECIMALS);
 };
 
-// Fetch the latest object state and version
 const fetchLatestObjectState = async (objectId) => {
   try {
     const objectInfo = await suiClient.getObject({
@@ -78,7 +74,6 @@ const fetchLatestObjectState = async (objectId) => {
   }
 };
 
-// Sign and execute transaction block
 const signAndExecuteTransaction = async (tx) => {
   try {
     const response = await suiClient.signAndExecuteTransactionBlock({
@@ -102,13 +97,11 @@ const signAndExecuteTransaction = async (tx) => {
   }
 };
 
-// Mint tokens on Sui with decimal adjustment
 const mintTokensSui = async (amount, recipient) => {
   try {
     if (!amount || amount <= 0) throw new Error('Invalid amount specified for minting');
     if (!recipient || !recipient.startsWith('0x')) throw new Error('Invalid recipient address');
 
-    // Convert amount to Sui decimals (ETH 18 -> SUI 9)
     const suiAmount = convertDecimals(amount, ETH_DECIMALS, SUI_DECIMALS);
     console.log(`Converting amount ${amount} (${ETH_DECIMALS} decimals) to ${suiAmount} (${SUI_DECIMALS} decimals)`);
 
@@ -139,7 +132,6 @@ const mintTokensSui = async (amount, recipient) => {
   }
 };
 
-// Function to get owned coin object of specific type
 const getOwnedCoin = async (ownerAddress) => {
   try {
     const coins = await suiClient.getCoins({
@@ -151,7 +143,6 @@ const getOwnedCoin = async (ownerAddress) => {
       throw new Error('No suitable coins found for burning');
     }
 
-    // Get the first available coin with sufficient balance
     return coins.data[0].coinObjectId;
   } catch (error) {
     console.error('Error fetching owned coins:', error);
@@ -159,7 +150,6 @@ const getOwnedCoin = async (ownerAddress) => {
   }
 };
 
-// Burn tokens on Sui
 const burnTokensSui = async (coinId) => {
   try {
     if (!coinId || !coinId.startsWith('0x')) throw new Error('Invalid coin ID specified for burning');
@@ -190,7 +180,6 @@ const burnTokensSui = async (coinId) => {
   }
 };
 
-// API Endpoint for bridging
 app.post('/api/bridge', async (req, res) => {
   const { direction, amount, ethAccount, suiAccount } = req.body;
 
@@ -221,7 +210,6 @@ app.post('/api/bridge', async (req, res) => {
       ]);
       console.log('Burning on Ethereum confirmed:', receipt.hash);
 
-      // Use the same amount as burned on Ethereum
       const mintTxDigest = await mintTokensSui(burnAmount, suiAccount);
       console.log('Minting on Sui completed:', mintTxDigest);
 
@@ -232,7 +220,6 @@ app.post('/api/bridge', async (req, res) => {
         ethTxHash: receipt.hash,
       });
     } else {
-      // Get the coin ID from the user's account
       const coinId = await getOwnedCoin(suiAccount);
       console.log('Found coin to burn:', coinId);
       
@@ -269,7 +256,6 @@ app.post('/api/bridge', async (req, res) => {
   }
 });
 
-// Start the server
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Bridge backend service running on port ${PORT}`);

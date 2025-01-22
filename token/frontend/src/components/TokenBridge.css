@@ -1,0 +1,119 @@
+.bridge-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+.bridge-title {
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 32px;
+  color: #1d1d1f;
+  letter-spacing: -0.5px;
+}
+
+.bridge-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1d1d1f;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px 16px;
+  border: 1px solid #d2d2d7;
+  border-radius: 12px;
+  font-size: 15px;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #0071e3;
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+}
+
+.eth-input-container {
+  display: flex;
+  gap: 12px;
+}
+
+.eth-input-container input {
+  flex: 1;
+}
+
+.connect-button {
+  padding: 12px 20px;
+  background-color: #f5f5f7;
+  border: none;
+  border-radius: 12px;
+  color: #1d1d1f;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.connect-button:hover {
+  background-color: #e8e8ed;
+}
+
+.submit-button {
+  padding: 16px;
+  background-color: #0071e3;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-button:hover {
+  background-color: #0077ed;
+}
+
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #0071e3;
+}
+
+.error-message {
+  margin-top: 20px;
+  padding: 16px;
+  background-color: #fff2f2;
+  border-radius: 12px;
+  color: #ff3b30;
+  font-size: 15px;
+  border: none;
+}
+
+.success-message {
+  margin-top: 20px;
+  padding: 16px;
+  background-color: #f2fff5;
+  border-radius: 12px;
+  color: #28cd41;
+  font-size: 15px;
+  border: none;
+} 
